@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.menu-css{
+  background-image: url("./assets/home/featured.jpg");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+}
