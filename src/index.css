@@ -8,3 +8,22 @@
   background-repeat: no-repeat; 
   background-size: cover;
 }
+.error-gage{
+  background-image: url("./assets/shop/404.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.login-img{
+  background-image: url("./assets/others/authentication.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.contact-img{
+  background-image: url("./assets/contact/banner.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
