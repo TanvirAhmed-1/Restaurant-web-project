@@ -14,9 +14,12 @@ const Navbar = () => {
             <li>
             <NavLink to={"/contact"}>ContactUs</NavLink>
             </li>
+            <li>
+            <NavLink to={"/menu"}>OUR MENU</NavLink>
+            </li>
   </>
   return (
-    <div className="navbar fixed z-20 bg-black text-white opacity-55 max-w-screen-xl mx-auto">
+    <div className="navbar fixed z-20 bg-black text-white bg-opacity-55 max-w-screen-xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

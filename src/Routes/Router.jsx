@@ -5,6 +5,7 @@ import Home from "../Pages/Home";
 import Login from "../Share/Login";
 import Register from "../Share/Register";
 import ContactUs from "../Pages/ContactUs/ContactUs";
+import MenuPage from "../Pages/Menu/MenuPage";
 
 const Router = createBrowserRouter([
 {
@@ -27,6 +28,10 @@ const Router = createBrowserRouter([
         {
             path:"/contact",
             element:<ContactUs></ContactUs>
+        },
+        {
+            path:"/menu",
+            element:<MenuPage></MenuPage>
         }
     ]
 },
