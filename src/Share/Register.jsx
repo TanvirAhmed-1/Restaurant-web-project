@@ -1,4 +1,5 @@
 import img1 from "../assets/others/authentication2.png";
+import GmailLogin from "./GmailLogin";
 const Register = () => {
   return (
     <div className="min-h-screen login-img lg:p-28 md:pb-20 p-10 pt-40 md:pt-0">
@@ -30,7 +31,10 @@ const Register = () => {
                   </div>
                   <button className="btn btn-neutral  border-none bg-[#D1A054] mt-4">Sign In</button>
                 </fieldset>
-                <p className="text-[#D1A054] text-sm text-center py-9">New here? Create a New Account</p>
+                <p className="text-[#D1A054] text-sm text-center pt-9 pb-4">New here? Create a New Account</p>
+                <section>
+                  <GmailLogin></GmailLogin>
+                </section>
               </div>
             </div>
           </div>
