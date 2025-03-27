@@ -7,7 +7,6 @@ import Menu from '../components/Menu';
 const Home = () => {
     return (
         <div>
-            <h1>home</h1>
             <section>
                 <NavCarousel></NavCarousel>
             </section>

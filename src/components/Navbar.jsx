@@ -1,21 +1,25 @@
 import { NavLink } from "react-router-dom";
+import img1 from '../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png'
 
 const Navbar = () => {
   const navMenu=<>
               <li>
-              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to={"/"}>HOME</NavLink>
             </li>
             <li>
-            <NavLink to={"/login"}>Login</NavLink>
+            <NavLink to={"/login"}>DASHBOARD</NavLink>
             </li>
             <li>
             <NavLink to={"/register"}>Register</NavLink>
             </li>
             <li>
-            <NavLink to={"/contact"}>ContactUs</NavLink>
+            <NavLink to={"/contact"}>CONTACT US</NavLink>
             </li>
             <li>
             <NavLink to={"/menu"}>OUR MENU</NavLink>
+            </li>
+            <li>
+            <NavLink to={"/menu"}>OUR SHOP</NavLink>
             </li>
   </>
   return (
@@ -47,18 +51,23 @@ const Navbar = () => {
         }
           </ul>
         </div>
-        <div className=" flex flex-col">
-        <a className="text-white text-xl font-bold">BISTRO BOSS</a>
-        <p className="text-white text-sm font-semibold">Restaurant</p>
+        <div className="ml-4 flex flex-col">
+        <a className="text-white text-xl text-center font-bold">BISTRO BOSS</a>
+        <p className="text-white text-sm tracking-[4px] text-center  font-semibold">Restaurant</p>
         </div>
       </div>
-      <div className="navbar-center hidden lg:flex">
+      <div className="navbar-center hidden lg:flex"> 
         <ul className="menu menu-horizontal px-1">
            {navMenu}
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <div><img src={img1} className="w-12" alt="" srcset="" /></div>
+
+        <a className="btn btn-ghost">SIGN OUT</a>
+
+        <a className="btn btn-ghost">REGISTER NOW</a>
+
       </div>
     </div>
   );
