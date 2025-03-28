@@ -1,10 +1,14 @@
 import { FaPhoneAlt } from "react-icons/fa";
 import "../../index.css";
 import { PiTelegramLogoLight } from "react-icons/pi";
+import { Helmet } from 'react-helmet-async';
 
 const ContactUs = () => {
   return (
     <div className="bg-white">
+            <Helmet>
+        <title>Bistro Boss |Contact Us</title>
+      </Helmet>
       <div className="contact-img min-h-[800px] w-full flex justify-center items-center">
         <div className="bg-black bg-opacity-40 py-40 px-72 z-40 space-y-4">
           <h1 className="uppercase text-white text-5xl text-center">

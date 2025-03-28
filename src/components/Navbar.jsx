@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import img1 from '../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png'
 
 const Navbar = () => {
@@ -64,9 +64,9 @@ const Navbar = () => {
       <div className="navbar-end">
         <div><img src={img1} className="w-12" alt="" srcset="" /></div>
 
-        <a className="btn btn-ghost">SIGN OUT</a>
+        <Link to={"/login"} className="btn btn-ghost">SIGN OUT</Link>
 
-        <a className="btn btn-ghost">REGISTER NOW</a>
+        <Link to={"/register"} className="btn btn-ghost">REGISTER</Link>
 
       </div>
     </div>
