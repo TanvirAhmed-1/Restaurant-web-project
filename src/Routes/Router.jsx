@@ -6,6 +6,7 @@ import Login from "../Share/Login";
 import Register from "../Share/Register";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import MenuPage from "../Pages/Menu/MenuPage";
+import OurShop from "../Pages/OURSHOPPage/OURSHOP";
 
 const Router = createBrowserRouter([
 {
@@ -32,6 +33,10 @@ const Router = createBrowserRouter([
         {
             path:"/menu",
             element:<MenuPage></MenuPage>
+        },
+        {
+            path:"/shop",
+            element:<OurShop></OurShop>
         }
     ]
 },
