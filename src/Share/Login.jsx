@@ -1,6 +1,26 @@
+import { useEffect, useRef, useState } from "react";
 import img1 from "../assets/others/authentication2.png";
 import GmailLogin from "./GmailLogin";
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+
+
+
+
 const Login = () => {
+
+  useEffect(() => {
+    loadCaptchaEnginge(4); 
+  }, []);
+
+  const [disable, setDisable]=useState(true)
+
+  const captchaRaf=useRef(null)
+  const handleCaptchaRaf=()=>{
+      const user_captcha_value= captchaRaf.current.value
+      if (validateCaptcha(user_captcha_value)) {
+        setDisable(false)
+    }
+  }
   return (
     <div className="min-h-screen login-img lg:p-28 md:pb-20 p-10 pt-40 md:pt-0">
       <div className="login-img md:p-20 drop-shadow-lg shadow-black lg:flex gap-10  justify-center items-center ">
@@ -23,13 +43,13 @@ const Login = () => {
                   <label className="fieldset-label text-black">Email</label>
                   <input
                     type="email"
-                    className="input bg-white border border-solid border-gray-300"
+                    className="input bg-white border border-solid border-gray-300 text-black"
                     placeholder="Email"
                   />
                   <label className="fieldset-label text-black">Password</label>
                   <input
                     type="password"
-                    className="input bg-white border border-solid border-gray-300"
+                    className="input bg-white border border-solid border-gray-300 text-black"
                     placeholder="Password"
                   />
                   <div>
@@ -37,7 +57,19 @@ const Login = () => {
                       Forgot password?
                     </a>
                   </div>
-                  <button className="btn btn-neutral  border-none bg-[#D1A054] mt-4">
+
+                  <div>
+                  <LoadCanvasTemplate />
+                    <input
+                    ref={captchaRaf}
+                    type="text"
+                    className="input bg-white border border-solid border-gray-300 text-black"
+                    placeholder="Enter a Captcha"
+                  />
+                <button onClick={handleCaptchaRaf} className="btn mt-2"> Validate </button>
+                  </div>
+      
+                  <button disabled={disable}  className="btn btn-neutral  border-none bg-[#D1A054] mt-4">
                     Sign In
                   </button>
                 </fieldset>
