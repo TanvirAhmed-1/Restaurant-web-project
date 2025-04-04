@@ -1,15 +1,19 @@
 
+import { Parallax, Background } from 'react-parallax';
 
 const HeaderImg = ({title,img,subtitle}) => {
     return (
-        <div
-        style={{
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          backgroundImage: `url(${img})`,
-        }}
-         className="object-cover overflow-hidden min-h-[800px] w-full flex justify-center items-center">
+
+      <Parallax
+      blur={{ min: -50, max: 50 }}
+      bgImage={img}
+      bgImageAlt="the dog"
+      strength={-200}
+      bgImageStyle={{ objectFit: "cover",objectPosition: "center", }} 
+  >
+      Blur transition from min to max
+      <div
+         className=" hero min-h-screen">
         <div className="bg-black bg-opacity-40 py-40 px-72 z-40 space-y-4">
           <h1 className="uppercase text-white text-5xl text-center ">
             {title}
@@ -19,6 +23,8 @@ const HeaderImg = ({title,img,subtitle}) => {
           </p>
         </div>
       </div>
+  </Parallax>
+
 
     );
 };
