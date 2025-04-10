@@ -1,10 +1,8 @@
-
-
-const Card = ({item}) => {
+const CardS = ({item}) => {
   const {image,name,price,recipe}=item
   return (
     <div>
-      <div className="card card-compact bg-[#E8E8E8] lg:w-96  shadow-xl relative">
+      <div className="card card-compact bg-[#E8E8E8] lg:w-80  shadow-xl relative">
         <figure className="">
           <img
           className="object-cover w-full overflow-hidden"
@@ -28,4 +26,4 @@ const Card = ({item}) => {
   );
 };
 
-export default Card;
+export default CardS;

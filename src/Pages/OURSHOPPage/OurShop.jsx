@@ -4,7 +4,7 @@ import HeaderImg from "../../Share/HeaderImg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardMap from "../../components/CardMap";
-import './Tap.css'
+import "./Tap.css";
 
 const OurShop = () => {
   const [menu, setMenu] = useState([]);
@@ -55,19 +55,19 @@ const OurShop = () => {
           </TabList>
           {/* Render menu items for each category */}
           <TabPanel>
-      <CardMap items={salad}></CardMap>
+            <CardMap items={salad}></CardMap>
           </TabPanel>
           <TabPanel>
-          <CardMap items={pizza}></CardMap>
+            <CardMap items={pizza}></CardMap>
           </TabPanel>
           <TabPanel>
-          <CardMap items={soup}></CardMap>
+            <CardMap items={soup}></CardMap>
           </TabPanel>
           <TabPanel>
-          <CardMap items={dessert}></CardMap>
+            <CardMap items={dessert}></CardMap>
           </TabPanel>
           <TabPanel>
-          <CardMap items={drinks}></CardMap>
+            <CardMap items={drinks}></CardMap>
           </TabPanel>
         </Tabs>
       </div>
