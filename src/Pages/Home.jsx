@@ -7,6 +7,7 @@ import Bistro from "./Home/Bistro";
 import MenuHome from "./Home/MenuHome";
 import Contact from "./Home/Contact";
 import Recommends from "./Home/Recommends";
+import Testimonials from "./Home/Testimonials";
 
 const Home = () => {
   return (
@@ -35,6 +36,9 @@ const Home = () => {
       </section>
       <section>
         <Menu></Menu>
+      </section>
+      <section className="md:w-10/12 mx-auto">
+          <Testimonials></Testimonials>
       </section>
 
     </div>

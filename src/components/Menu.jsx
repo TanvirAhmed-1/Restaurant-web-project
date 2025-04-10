@@ -1,18 +1,55 @@
-import img1 from "../assets/home/featured.jpg"
+import img1 from "../assets/home/featured.jpg";
+import HomeHeader from "../Pages/Home/HomeHeader";
 
 const Menu = () => {
   return (
-    <div className="menu-css bg-fixed">
-      <div></div>
-      <div className="md:flex gap-20 px-40 py-40 justify-center items-center">
+    <div
+      className="min-h-screen bg-fixed relative"
+      style={{
+        backgroundImage: `url(${img1})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      <div className="relative z-10">
         <div>
-          <img className=" object-cover overflow-hidden" src={img1} alt="" srcset="" />
-        
+          <div className="flex flex-col gap-6 justify-center items-center py-10 ">
+            <div>
+              <p className="text-[#D99904] text-sm text-center">
+                ---Check it out---
+              </p>
+            </div>
+            <div className="border-t-2 border-b-2 border-gray-200">
+              <h2 className="text-white text-xl font-semibold text-center py-2 px-6">
+                FROM OUR MENU
+              </h2>
+            </div>
+          </div>
         </div>
-        <div>
-          <p>March 20,2025</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint molestias est repellat ut quas, hic adipisci quo accusamus asperiores debitis.</p>
-          <button className="uppercase btn btn-ghost bg-transparent">read more</button>
+
+        <div className="md:flex gap-10 justify-center items-center">
+          <div className="w-[40%]">
+            <img
+              className="object-cover overflow-hidden"
+              src={img1}
+              alt="Featured dish"
+            />
+          </div>
+          <div className="text-white space-y-4 w-[40%] px-20">
+            <p>March 20, 2025</p>
+            <p>
+              consectetur adipisicing elit. Sint molestias est repellat ut quas,
+              hic adipisci quo accusamus asperiores debitis.
+            </p>
+            <div className="pt-8">
+              <button className="uppercase btn border-l-0 border-r-0 border-t-0 border-b-2 btn-ghost bg-transparent border border-white text-white hover:bg-white hover:text-black">
+                Read More
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
