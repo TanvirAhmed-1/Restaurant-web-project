@@ -3,7 +3,8 @@ import shopImg from "../../assets/home/chef-service.jpg";
 import HeaderImg from "../../Share/HeaderImg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import Card from "../../components/Card";
+import CardMap from "../../components/CardMap";
+import './Tap.css'
 
 const OurShop = () => {
   const [menu, setMenu] = useState([]);
@@ -26,10 +27,10 @@ const OurShop = () => {
 
   // Filter menu based on categories
   const salad = menu.filter((item) => item.category === "salad");
-  const pizza = menu.filter((item) => item.category === "Pizza");
-  const soup = menu.filter((item) => item.category === "Soup");
-  const dessert = menu.filter((item) => item.category === "Dessert");
-  const drinks = menu.filter((item) => item.category === "Drinks");
+  const pizza = menu.filter((item) => item.category === "pizza");
+  const soup = menu.filter((item) => item.category === "soup");
+  const dessert = menu.filter((item) => item.category === "dessert");
+  const drinks = menu.filter((item) => item.category === "drinks");
 
   // If loading, show loading message
   if (loading) {
@@ -43,7 +44,7 @@ const OurShop = () => {
         title="OUR SHOP"
         subtitle="Would you like to try a dish?"
       />
-      <div>
+      <div className="pt-10">
         <Tabs defaultIndex={indexTab} onSelect={(index) => setIndexTab(index)}>
           <TabList>
             <Tab>Salad</Tab>
@@ -54,29 +55,19 @@ const OurShop = () => {
           </TabList>
           {/* Render menu items for each category */}
           <TabPanel>
-            {salad.map((item, index) => (
-              <Card key={index} item={item} />
-            ))}
+      <CardMap items={salad}></CardMap>
           </TabPanel>
           <TabPanel>
-            {pizza.map((item, index) => (
-              <Card key={index} item={item} />
-            ))}
+          <CardMap items={pizza}></CardMap>
           </TabPanel>
           <TabPanel>
-            {soup.map((item, index) => (
-              <Card key={index} item={item} />
-            ))}
+          <CardMap items={soup}></CardMap>
           </TabPanel>
           <TabPanel>
-            {dessert.map((item, index) => (
-              <Card key={index} item={item} />
-            ))}
+          <CardMap items={dessert}></CardMap>
           </TabPanel>
           <TabPanel>
-            {drinks.map((item, index) => (
-              <Card key={index} item={item} />
-            ))}
+          <CardMap items={drinks}></CardMap>
           </TabPanel>
         </Tabs>
       </div>

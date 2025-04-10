@@ -1,0 +1,14 @@
+/* tab css */
+.react-tabs__tab-list {
+    text-align: center;
+    border-bottom:none;
+     margin: 0 0 0px; 
+     padding: 0;
+  }
+
+  .react-tabs__tab--selected {
+    background:none;
+    border-bottom:2px solid #BB8506;
+    color: #BB8506;
+
+}

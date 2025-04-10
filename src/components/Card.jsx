@@ -1,21 +1,26 @@
-import img1 from "../assets/home/slide5.jpg"
 
-const Card = () => {
+
+const Card = ({item}) => {
+  const {image,name,price,recipe}=item
   return (
     <div>
-      <div className="card card-compact bg-base-100 w-96 shadow-xl">
+      <div className="card card-compact bg-[#E8E8E8] lg:w-96  shadow-xl relative">
         <figure className="">
           <img
-          className="object-cover w-full overflow-hidden h-96"
-            src={img1}
+          className="object-cover w-full overflow-hidden h-80"
+            src={image}
             alt="Shoes"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-center">Shoes!</h2>
-          <p className="text-center">If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-center">
-            <button className="btn btn-primary">Buy Now</button>
+          <p className=" absolute right-2 text-sm rounded-lg top-2 bg-black text-white py-1 px-4 ">${price}</p>
+
+          <div className="flex justify-center">
+          <h2 className="card-title text-center text-black ">{name}</h2>
+          </div>
+          <p className="text-start line-clamp-2 text-[#737373]">{recipe}</p>
+          <div className="card-actions justify-center pt-6">
+            <button className="btn border-t-0 border-l-0 border-r-0 bg-[#E8E8E8] hover:bg-black  border-solid text-[#BB8506] border-b-2  border-[#BB8506]">Add to Card</button>
           </div>
         </div>
       </div>
