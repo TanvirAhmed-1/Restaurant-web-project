@@ -10,7 +10,7 @@ const ContactUs = () => {
         <title>Bistro Boss |Contact Us</title>
       </Helmet>
       <div className="contact-img min-h-[800px] w-full flex justify-center items-center">
-        <div className="bg-black bg-opacity-40 py-40 px-72 z-40 space-y-4">
+        <div className="bg-black bg-opacity-40 md:py-40 lg:px-72 md:px-40 px-20 py-20 z-10 space-y-4">
           <h1 className="uppercase text-white text-5xl text-center">
             Contact us
           </h1>

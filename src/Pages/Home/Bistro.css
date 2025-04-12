@@ -4,3 +4,10 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+/* Slick arrows color*/
+.slick-prev:before,
+.slick-next:before {
+  color: #007AFF !important;
+  font-size: 30px !important;
+}

@@ -42,3 +42,17 @@
 }
 
 
+.carousel .thumbs-wrapper {
+  display:flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+
+.swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, -3px) !important;
+  top: var(--swiper-pagination-top, auto);
+  left: 0;
+  width: 100%;
+}
+
