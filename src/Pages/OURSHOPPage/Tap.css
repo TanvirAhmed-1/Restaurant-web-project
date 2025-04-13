@@ -6,9 +6,14 @@
      padding: 0;
   }
 
+  .react-tabs__tab{
+    color: black;
+  }
+  
   .react-tabs__tab--selected {
     background:none;
     border-bottom:2px solid #BB8506;
     color: #BB8506;
 
 }
+

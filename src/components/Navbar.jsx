@@ -1,7 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import img1 from '../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png'
+import { useContext } from "react";
+import { AuthContext } from "./Authountation/Authorization";
+import { FaCartPlus } from "react-icons/fa";
 
 const Navbar = () => {
+  const {userSignOut,users}=useContext(AuthContext)
+  const handleUserLogeOut=()=>{
+    userSignOut()
+    .then(res=>{
+      console.log(res.user)
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
   const navMenu=<>
               <li>
               <NavLink to={"/"}>HOME</NavLink>
@@ -10,16 +23,13 @@ const Navbar = () => {
             <NavLink to={"/login"}>DASHBOARD</NavLink>
             </li>
             <li>
-            <NavLink to={"/register"}>Register</NavLink>
-            </li>
-            <li>
             <NavLink to={"/contact"}>CONTACT US</NavLink>
             </li>
             <li>
             <NavLink to={"/menu"}>OUR MENU</NavLink>
             </li>
             <li>
-            <NavLink to={"/shop"}>OUR SHOP</NavLink>
+            <NavLink to={"/shop"}>OUR ORDER</NavLink>
             </li>
   </>
   return (
@@ -62,11 +72,18 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <div><img src={img1} className="w-12" alt="" srcset="" /></div>
+        {/* <div><img src={img1} className="w-12" alt="" srcset="" /></div> */}
+        <div className="flex gap-1">
+          <FaCartPlus  className="text-xl " />
+          <div className="badge badge-sm badge-secondary">+0</div>
+        
+        </div>
 
-        <Link to={"/login"} className="btn btn-ghost">SIGN OUT</Link>
+        {
+          users?<Link to={"/login"} onClick={handleUserLogeOut} className="btn btn-ghost">SIGN OUT</Link>:<Link to={"/register"} className="btn btn-ghost">REGISTER</Link>
+        }
 
-        <Link to={"/register"} className="btn btn-ghost">REGISTER</Link>
+        
 
       </div>
     </div>

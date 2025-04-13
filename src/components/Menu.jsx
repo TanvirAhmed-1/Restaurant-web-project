@@ -30,15 +30,15 @@ const Menu = () => {
           </div>
         </div>
 
-        <div className="md:flex gap-10 justify-center items-center">
-          <div className="w-[40%]">
+        <div className="md:flex  gap-10 justify-center items-center">
+          <div className="md:w-[40%] px-6 md:px-0 pb-10 md:pb-0">
             <img
               className="object-cover overflow-hidden"
               src={img1}
               alt="Featured dish"
             />
           </div>
-          <div className="text-white space-y-4 w-[40%] px-20">
+          <div className="text-white space-y-4 md:w-[40%] px-20">
             <p>March 20, 2025</p>
             <p>
               consectetur adipisicing elit. Sint molestias est repellat ut quas,
