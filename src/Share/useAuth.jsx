@@ -2,7 +2,6 @@
 
 const useAuth = () => {
 
-const 
 
     return (
         <div>

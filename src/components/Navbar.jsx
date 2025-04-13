@@ -3,8 +3,10 @@ import img1 from '../assets/icon/151-1511569_cart-notifications-free-shopping-ca
 import { useContext } from "react";
 import { AuthContext } from "./Authountation/Authorization";
 import { FaCartPlus } from "react-icons/fa";
+import TanStackQuery from "../Share/TanStackQuery";
 
 const Navbar = () => {
+  const[data]=TanStackQuery()
   const {userSignOut,users}=useContext(AuthContext)
   const handleUserLogeOut=()=>{
     userSignOut()
@@ -75,7 +77,7 @@ const Navbar = () => {
         {/* <div><img src={img1} className="w-12" alt="" srcset="" /></div> */}
         <div className="flex gap-1">
           <FaCartPlus  className="text-xl " />
-          <div className="badge badge-sm badge-secondary">+0</div>
+          <div className="badge badge-sm badge-secondary">+{data?.length}</div>
         
         </div>
 

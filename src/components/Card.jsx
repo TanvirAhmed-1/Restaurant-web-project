@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "./Authountation/Authorization";
+import TanStackQuery from "../Share/TanStackQuery";
 
 const Card = ({ item }) => {
+  const[,refetch]=TanStackQuery()
   const { users } = useContext(AuthContext);
   const { image, name, price, recipe } = item;
   const handleOrder = (d) => {
@@ -23,6 +25,7 @@ const Card = ({ item }) => {
         console.log(data);
         if (data.acknowledged === true) {
           alert("data is save");
+          refetch()
         }
       })
       .catch((err) => {
