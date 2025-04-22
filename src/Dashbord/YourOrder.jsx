@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoBagAddOutline } from "react-icons/io5";
 import TanStackQuery from "../Share/TanStackQuery";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import useAxios from "../Share/useAxios";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../components/Authountation/Authorization";
+import useAuth from "../Share/useAuth";
+import useAxios from "../Share/useAxios";
 
 const YourOrder = () => {
   const [data, refetch] = TanStackQuery();
-  const axiosBase = useAxios();
   const [orderPrice, setOrderPrice] = useState({});
+  const { users } = useContext(AuthContext);
 
-  // Get count for item or default to 1
+  const axiosUrl = useAxios();
+
   const getCount = (id) => orderPrice[id] || 1;
 
-  // Increment quantity
   const increment = (id) => {
     setOrderPrice((newData) => ({
       ...newData,
@@ -21,7 +24,6 @@ const YourOrder = () => {
     }));
   };
 
-  // Decrement
   const decrement = (id) => {
     setOrderPrice((newData) => ({
       ...newData,
@@ -29,44 +31,35 @@ const YourOrder = () => {
     }));
   };
 
-  // Total price
   const totalPrice = data?.reduce((sum, item) => {
     return sum + item.price * getCount(item._id);
   }, 0);
 
-  // Discount
   const discount = data?.length >= 3 ? totalPrice * 0.1 : 0;
   const finalPrice = totalPrice - discount;
 
-  if (data?.length === 0) {
-    return (
-      <div className="flex flex-col justify-center items-center p-6">
-        <IoBagAddOutline className="text-5xl text-red-400" />
-        <h1 className="text-lg font-semibold">You have No Order</h1>
-        <h1 className="text-sm text-gray-500">Please Add to Order</h1>
-      </div>
-    );
-  }
+  // Define orderData at top level so it can be passed in <Link>
+  const orderItems = data?.map((item) => ({
+    productId: item._id,
+    name: item.name,
+    image: item.image,
+    price: item.price,
+    quantity: getCount(item._id),
+    total: item.price * getCount(item._id),
+  }));
 
-  // Backend data send
+  const orderData = {
+    items: orderItems,
+    totalPrice: totalPrice,
+    discount: discount,
+    finalPrice: finalPrice,
+    orderTime: new Date().toISOString(),
+    email: users?.email,
+  };
+
   const handleCheckout = () => {
-    const orderItems = data.map((item) => ({
-      productId: item._id,
-      name: item.name,
-      image: item.image,
-      price: item.price,
-      quantity: getCount(item._id),
-      total: item.price * getCount(item._id),
-    }));
-  
-    const orderData = {
-      items: orderItems,
-      totalPrice: totalPrice,
-      discount: discount,
-      finalPrice: finalPrice,
-      orderTime: new Date().toISOString(),
-    };
-  
+    localStorage.setItem("orderData", JSON.stringify(orderData));
+
     fetch("http://localhost:5000/payments", {
       method: "POST",
       headers: {
@@ -78,18 +71,57 @@ const YourOrder = () => {
       .then((data) => {
         console.log("Order Response:", data);
         if (data.acknowledged) {
-          alert("✅ Order placed successfully!");
           refetch();
+          alert("Something went wrong while placing the order.");
         } else {
-          alert("⚠️ Something went wrong while placing the order.");
+          alert("Something went wrong while placing the order.");
         }
       })
       .catch((err) => {
         console.error("Fetch error:", err);
-        alert("❌ Failed to place the order. Please try again.");
+        alert("Failed to place the order. Please try again.");
       });
   };
-  
+
+  // database order delete
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosUrl
+          .delete(`/order/delete/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          })
+          .catch((err) => {
+            console.log("error");
+          });
+      }
+    });
+  };
+
+  if (data?.length === 0) {
+    return (
+      <div className="flex flex-col justify-center items-center p-6">
+        <IoBagAddOutline className="text-5xl text-red-400" />
+        <h1 className="text-lg font-semibold">You have No Order</h1>
+        <h1 className="text-sm text-gray-500">Please Add to Order</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white px-4 py-6">
@@ -128,7 +160,10 @@ const YourOrder = () => {
                     -
                   </button>
                 </div>
-                <div className="flex justify-center">
+                <div
+                  onClick={() => handleDelete(v._id)}
+                  className="flex justify-center"
+                >
                   <RiDeleteBin6Line className="text-xl text-red-500 cursor-pointer" />
                 </div>
               </div>
@@ -154,7 +189,9 @@ const YourOrder = () => {
           <hr />
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold text-black">Total price</h2>
-            <p className="text-xl font-bold text-black">${finalPrice.toFixed(2)}</p>
+            <p className="text-xl font-bold text-black">
+              ${finalPrice.toFixed(2)}
+            </p>
           </div>
           {data?.length >= 3 && (
             <p className="text-sm text-green-400 flex">
@@ -162,10 +199,11 @@ const YourOrder = () => {
             </p>
           )}
           <div>
-            <Link to={"/payment"}
-            
+            <Link
+              to="/payment"
+              state={{ orderData }}
               onClick={handleCheckout}
-              className="w-full px-4 py-2 text-white bg-red-500 rounded-md transform transition-transform duration-300 hover:scale-105"
+              className="w-full block text-center px-4 py-2 text-white bg-red-500 rounded-md transform transition-transform duration-300 hover:scale-105"
             >
               Proceed to Checkout
             </Link>
