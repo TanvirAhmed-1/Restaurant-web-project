@@ -2,7 +2,7 @@ const CardS = ({item}) => {
   const {image,name,price,recipe}=item
   return (
     <div>
-      <div className="card card-compact bg-[#E8E8E8] lg:w-80  shadow-xl relative">
+      <div className="card card-compact bg-[#E8E8E8] lg:w-80  shadow-xl relative transform transition-transform duration-300 hover:scale-110">
         <figure className="">
           <img
           className="object-cover w-full overflow-hidden"

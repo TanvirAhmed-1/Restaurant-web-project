@@ -7,40 +7,57 @@ import Register from "../Share/Register";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import MenuPage from "../Pages/Menu/MenuPage";
 import OurShop from "../Pages/OURSHOPPage/OURSHOP";
+import YourOrder from "../Dashbord/YourOrder";
+import DashboardRoute from "../Dashbord/DashboardRoute";
+import Payment from "../components/Payment";
 
 const Router = createBrowserRouter([
-{
-    path:"/",
-    element:<Root></Root>,
-    errorElement:<ErrorPage></ErrorPage>,
-    children:[
-        {
-            path:"/",
-            element:<Home></Home>,
-        },
-        {
-            path:"/login",
-            element:<Login></Login>
-        },
-        {
-            path:"/register",
-            element:<Register></Register>
-        },
-        {
-            path:"/contact",
-            element:<ContactUs></ContactUs>
-        },
-        {
-            path:"/menu",
-            element:<MenuPage></MenuPage>
-        },
-        {
-            path:"/shop",
-            element:<OurShop></OurShop>
-        }
-    ]
-},
-])
-
+  {
+    path: "/",
+    element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/menu",
+        element: <MenuPage></MenuPage>,
+      },
+      {
+        path: "/shop",
+        element: <OurShop></OurShop>,
+      },
+      {
+        path: "/payment",
+        element:<Payment></Payment>,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <DashboardRoute></DashboardRoute>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+        { 
+        path: "/yourOrder", 
+        element: <YourOrder></YourOrder>
+       },
+    ],
+  },
+]);
 
 export default Router;

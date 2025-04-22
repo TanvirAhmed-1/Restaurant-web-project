@@ -75,11 +75,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {/* <div><img src={img1} className="w-12" alt="" srcset="" /></div> */}
-        <div className="flex gap-1">
+        <NavLink to={"/yourOrder"} className="flex gap-1">
           <FaCartPlus  className="text-xl " />
           <div className="badge badge-sm badge-secondary">+{data?.length}</div>
         
-        </div>
+        </NavLink>
 
         {
           users?<Link to={"/login"} onClick={handleUserLogeOut} className="btn btn-ghost">SIGN OUT</Link>:<Link to={"/register"} className="btn btn-ghost">REGISTER</Link>

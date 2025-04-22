@@ -35,7 +35,7 @@ const Card = ({ item }) => {
 
   return (
     <div>
-      <div className="card card-compact bg-[#E8E8E8] lg:w-96  shadow-xl relative">
+      <div className="card card-compact bg-[#E8E8E8] lg:w-96  shadow-xl relative transform transition-transform duration-300 hover:scale-105">
         <figure className="">
           <img
             className="object-cover w-full overflow-hidden"
