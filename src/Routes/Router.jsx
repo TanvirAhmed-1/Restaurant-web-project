@@ -10,6 +10,7 @@ import OurShop from "../Pages/OURSHOPPage/OURSHOP";
 import YourOrder from "../Dashbord/YourOrder";
 import DashboardRoute from "../Dashbord/DashboardRoute";
 import Payment from "../components/Payment";
+import OrderHistory from "../components/orderHistory";
 
 const Router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const Router = createBrowserRouter([
         { 
         path: "/yourOrder", 
         element: <YourOrder></YourOrder>
+       },
+       { 
+        path: "/orderHistory", 
+        element:<OrderHistory></OrderHistory>
        },
     ],
   },

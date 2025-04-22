@@ -141,7 +141,7 @@ const YourOrder = () => {
                 </div>
                 <h1 className="text-sm md:col-span-2 text-black">{v.name}</h1>
                 <p className="text-sm text-black">
-                  Price: ${v.price} × {getCount(v._id)}
+                  Price: ${v.price}
                 </p>
                 <div className="text-black grid grid-cols-3 items-center gap-0 border border-black rounded overflow-hidden w-28">
                   <button

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Bkash from "../assets/icon/BKash.png";
 import PayPal from "../assets/icon/PayPal.png";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const Payment = () => {
   const [data, setData] = useState([]);
@@ -88,9 +89,9 @@ const Payment = () => {
 
         <div className="w-full md:w-[40%]">
           <div className="text-end">
-            <button className="py-2 px-3 text-black rounded-lg mb-1 bg-sky-400 hover:bg-sky-600">
+            <Link to={"/orderHistory"} className="py-2 px-3 text-black rounded-lg mb-1 bg-sky-400 hover:bg-sky-600">
               Order History
-            </button>
+            </Link>
           </div>
           <div className=" border border-black p-4 rounded-md bg-gray-50 space-y-4 shadow-sm">
             <div className="flex justify-between">

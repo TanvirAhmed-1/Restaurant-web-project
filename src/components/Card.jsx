@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "./Authountation/Authorization";
 import TanStackQuery from "../Share/TanStackQuery";
+import Swal from "sweetalert2";
 
 const Card = ({ item }) => {
   const[,refetch]=TanStackQuery()
@@ -23,9 +24,17 @@ const Card = ({ item }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.message === "Product already added"){
+          Swal.fire("Product already added");
+        }
         if (data.acknowledged === true) {
-          alert("data is save");
+          Swal.fire({
+            title: "Drag me!",
+            icon: "success",
+            draggable: true
+          });
           refetch()
+        
         }
       })
       .catch((err) => {
