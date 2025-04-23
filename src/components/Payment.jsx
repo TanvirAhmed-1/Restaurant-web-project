@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import Bkash from "../assets/icon/BKash.png";
 import PayPal from "../assets/icon/PayPal.png";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const navigate=useNavigate()
 
   useEffect(() => {
     const orderData = JSON.parse(localStorage.getItem("orderData"));
@@ -40,15 +41,19 @@ const Payment = () => {
       timer: 1500,
     });
 
+
+
     localStorage.removeItem("orderData");
+
+    navigate("/shop")
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-black">Loading...</div>;
   }
 
   return (
-    <div className="w-11/12 md:w-10/12 mx-auto py-6">
+    <div className="w-11/12 md:w-10/12 mx-auto py-6 pt-40">
       <h1 className="text-2xl text-black text-center uppercase mb-6">
         Choose your Payment Option
       </h1>
@@ -88,8 +93,8 @@ const Payment = () => {
         {/* Summary Section */}
 
         <div className="w-full md:w-[40%]">
-          <div className="text-end">
-            <Link to={"/orderHistory"} className="py-2 px-3 text-black rounded-lg mb-1 bg-sky-400 hover:bg-sky-600">
+          <div className="text-end mb-3">
+            <Link to={"/orderHistory"} className="py-2 px-3 text-black rounded-lg bg-sky-400 hover:bg-sky-600">
               Order History
             </Link>
           </div>

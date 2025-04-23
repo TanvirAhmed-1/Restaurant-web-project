@@ -11,6 +11,8 @@ import YourOrder from "../Dashbord/YourOrder";
 import DashboardRoute from "../Dashbord/DashboardRoute";
 import Payment from "../components/Payment";
 import OrderHistory from "../components/orderHistory";
+import AddProduct from "../Dashbord/AddProduct";
+import AllProducts from "../Dashbord/AllProducts";
 
 const Router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ const Router = createBrowserRouter([
        { 
         path: "/orderHistory", 
         element:<OrderHistory></OrderHistory>
+       },
+       { 
+        path: "/addProduct", 
+        element:<AddProduct></AddProduct>
+       },
+       { 
+        path: "/allProduct", 
+        element:<AllProducts></AllProducts>
        },
     ],
   },

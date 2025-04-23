@@ -5,7 +5,6 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../components/Authountation/Authorization";
-import useAuth from "../Share/useAuth";
 import useAxios from "../Share/useAxios";
 
 const YourOrder = () => {
@@ -115,9 +114,9 @@ const YourOrder = () => {
 
   if (data?.length === 0) {
     return (
-      <div className="flex flex-col justify-center items-center p-6">
-        <IoBagAddOutline className="text-5xl text-red-400" />
-        <h1 className="text-lg font-semibold">You have No Order</h1>
+      <div className="flex flex-col justify-center items-center p-6 md:min-h-screen h-full">
+        <IoBagAddOutline className="text-6xl text-red-400" />
+        <h1 className="text-lg font-semibold text-black mb-2">You have No Order</h1>
         <h1 className="text-sm text-gray-500">Please Add to Order</h1>
       </div>
     );
@@ -125,7 +124,7 @@ const YourOrder = () => {
 
   return (
     <div className="bg-white px-4 py-6">
-      <h1 className="text-2xl font-bold mb-4">Your Order</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center text-black">Your Order</h1>
       <div className="flex flex-col md:flex-row justify-center items-start gap-6">
         {/* Order List */}
         <div className="w-full md:w-[70%] grid gap-4">

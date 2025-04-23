@@ -22,7 +22,10 @@ const Navbar = () => {
               <NavLink to={"/"}>HOME</NavLink>
             </li>
             <li>
-            <NavLink to={"/login"}>DASHBOARD</NavLink>
+            <NavLink to={"/addProduct"}>DASHBOARD</NavLink>
+            </li>
+            <li>
+            <NavLink to={"/allProduct"}>DASHBOARD</NavLink>
             </li>
             <li>
             <NavLink to={"/contact"}>CONTACT US</NavLink>
@@ -72,8 +75,10 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">
            {navMenu}
         </ul>
+
       </div>
       <div className="navbar-end">
+
         {/* <div><img src={img1} className="w-12" alt="" srcset="" /></div> */}
         <NavLink to={"/yourOrder"} className="flex gap-1">
           <FaCartPlus  className="text-xl " />
