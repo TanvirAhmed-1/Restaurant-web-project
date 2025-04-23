@@ -1,5 +1,6 @@
 import React from "react";
 import HomeHeader from "./HomeHeader";
+import { Link } from "react-router-dom";
 
 const MenuHome = () => {
   return (
@@ -67,7 +68,7 @@ const MenuHome = () => {
         </div>
       </div>
       <div className="flex justify-center pb-20 ">
-        <button className="btn text-black btn-ghost uppercase text-center hover:text-white border-b-2 border-gray-600 border-t-0 border-l-0 border-r-0">View full menu</button>
+        <Link to={"/menu"} className="btn text-black btn-ghost uppercase text-center hover:text-white border-b-2 border-gray-600 border-t-0 border-l-0 border-r-0">View full menu</Link>
       </div>
     </div>
   );

@@ -1,13 +1,12 @@
 import CardMap from "../../components/CardMap";
 import CardS from "../../Share/CardS";
 import useDataHook from "../../Share/useDataHook";
-import Slider from "./../../components/Slider";
 
 const Recommends = () => {
   const { menu, loading } = useDataHook();
 
   if (loading) {
-    return <p>Loading...</p>; // or your own spinner component
+    return <p>Loading...</p>;
   }
   const salad = menu.filter((item) => item.category === "salad").slice(0, 3);
   return (

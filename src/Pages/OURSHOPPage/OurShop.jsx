@@ -6,25 +6,27 @@ import "react-tabs/style/react-tabs.css";
 import CardMap from "../../components/CardMap";
 import "./Tap.css";
 import { Helmet } from "react-helmet-async";
+import { CiSearch } from "react-icons/ci";
 
 const OurShop = () => {
+  const[sort,setSort]=useState(false)
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [indexTab, setIndexTab] = useState(0);
 
   // Fetch menu data on component mount
   useEffect(() => {
-    fetch("http://localhost:5000/menu")
+    fetch(`http://localhost:5000/menu?sort=${sort}`)
       .then((res) => res.json())
       .then((data) => {
         setMenu(data);
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false); 
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
         setLoading(false);
       });
-  }, []);
+  }, [sort]);
 
   // Filter menu based on categories
   const salad = menu.filter((item) => item.category === "salad");
@@ -51,13 +53,22 @@ const OurShop = () => {
       <div className="pt-10">
         <Tabs defaultIndex={indexTab} onSelect={(index) => setIndexTab(index)}>
           <TabList>
+          <Tab>All</Tab>
             <Tab>Salad</Tab>
             <Tab>Pizza</Tab>
             <Tab>Soup</Tab>
             <Tab>Dessert</Tab>
             <Tab>Drinks</Tab>
           </TabList>
+          <div className="text-start ml-20 mt-[-35px]"><label className="input">
+          <CiSearch className="text-yellow-800 text-xl" />
+  <input type="search" className="grow " placeholder="Search" />
+</label> </div>
+          <div className="text-end mr-10 mt-[-35px] "><button onClick={()=>setSort(!sort)} className={`btn ${sort?"bg-yellow-400 text-stone-800":''}`}>{sort?"Sorted by Price":"Sort by Price"}</button> </div>
           {/* Render menu items for each category */}
+          <TabPanel>
+            <CardMap items={menu}></CardMap>
+          </TabPanel>
           <TabPanel>
             <CardMap items={salad}></CardMap>
           </TabPanel>
@@ -74,6 +85,8 @@ const OurShop = () => {
             <CardMap items={drinks}></CardMap>
           </TabPanel>
         </Tabs>
+
+      
       </div>
     </div>
   );
