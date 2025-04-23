@@ -5,6 +5,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import CardMap from "../../components/CardMap";
 import "./Tap.css";
+import { Helmet } from "react-helmet-async";
 
 const OurShop = () => {
   const [menu, setMenu] = useState([]);
@@ -39,6 +40,9 @@ const OurShop = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | Order</title>
+      </Helmet>
       <HeaderImg
         img={shopImg}
         title="OUR SHOP"

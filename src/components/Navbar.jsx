@@ -1,42 +1,45 @@
 import { Link, NavLink } from "react-router-dom";
-import img1 from '../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png'
+import img1 from "../assets/icon/151-1511569_cart-notifications-free-shopping-cart-favicon-hd-png-removebg-preview.png";
 import { useContext } from "react";
 import { AuthContext } from "./Authountation/Authorization";
 import { FaCartPlus } from "react-icons/fa";
 import TanStackQuery from "../Share/TanStackQuery";
 
 const Navbar = () => {
-  const[data]=TanStackQuery()
-  const {userSignOut,users}=useContext(AuthContext)
-  const handleUserLogeOut=()=>{
+  const [data] = TanStackQuery();
+  const { userSignOut, users } = useContext(AuthContext);
+  const handleUserLogeOut = () => {
     userSignOut()
-    .then(res=>{
-      console.log(res.user)
-    })
-    .catch(err=>{
-      console.log(err)
-    })
-  }
-  const navMenu=<>
-              <li>
-              <NavLink to={"/"}>HOME</NavLink>
-            </li>
-            <li>
-            <NavLink to={"/addProduct"}>DASHBOARD</NavLink>
-            </li>
-            <li>
-            <NavLink to={"/allProduct"}>DASHBOARD</NavLink>
-            </li>
-            <li>
-            <NavLink to={"/contact"}>CONTACT US</NavLink>
-            </li>
-            <li>
-            <NavLink to={"/menu"}>OUR MENU</NavLink>
-            </li>
-            <li>
-            <NavLink to={"/shop"}>OUR ORDER</NavLink>
-            </li>
-  </>
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const navMenu = (
+    <>
+      <li>
+        <NavLink to={"/"}>HOME</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/menu"}>MENU</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/shop"}>ORDER</NavLink>
+      </li>
+      {users && users.email ? (
+        <li>
+          <NavLink to={"/dashboard"}>DASHBOARD</NavLink>
+        </li>
+      ) : (
+        ""
+      )}
+      <li>
+        <NavLink to={"/contact"}>CONTACT US</NavLink>
+      </li>
+    </>
+  );
   return (
     <div className="navbar fixed z-20 bg-black text-white bg-opacity-55 max-w-screen-xl mx-auto">
       <div className="navbar-start">
@@ -61,37 +64,52 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-40 mt-3 w-52 p-2 shadow"
           >
-        {
-          navMenu
-        }
+            {navMenu}
           </ul>
         </div>
         <div className="ml-4 flex flex-col">
-        <a className="text-white text-xl text-center font-bold">BISTRO BOSS</a>
-        <p className="text-white text-sm tracking-[4px] text-center  font-semibold">Restaurant</p>
+          <a className="text-white text-xl text-center font-bold">
+            BISTRO BOSS
+          </a>
+          <p className="text-white text-sm tracking-[4px] text-center  font-semibold">
+            Restaurant
+          </p>
         </div>
       </div>
-      <div className="navbar-center hidden lg:flex"> 
-        <ul className="menu menu-horizontal px-1">
-           {navMenu}
-        </ul>
-
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">{navMenu}</ul>
       </div>
-      <div className="navbar-end">
-
-        {/* <div><img src={img1} className="w-12" alt="" srcset="" /></div> */}
+      <div className="navbar-end gap-x-4">
         <NavLink to={"/yourOrder"} className="flex gap-1">
-          <FaCartPlus  className="text-xl " />
+          <FaCartPlus className="text-xl " />
           <div className="badge badge-sm badge-secondary">+{data?.length}</div>
-        
         </NavLink>
-
-        {
-          users?<Link to={"/login"} onClick={handleUserLogeOut} className="btn btn-ghost">SIGN OUT</Link>:<Link to={"/register"} className="btn btn-ghost">REGISTER</Link>
-        }
-
-        
-
+        <div>
+          {users ? (
+            <img
+              src={
+                users.photoURL || "https://i.ibb.co/2dH3HGL/default-avatar.png"
+              }
+              alt="User"
+              className="w-8 h-8 rounded-full border border-white object-cover"
+            />
+          ) : (
+            ""
+          )}
+        </div>
+        {users ? (
+          <Link
+            to={"/login"}
+            onClick={handleUserLogeOut}
+            className="btn btn-ghost"
+          >
+            SIGN OUT
+          </Link>
+        ) : (
+          <Link to={"/register"} className="btn btn-ghost">
+            REGISTER
+          </Link>
+        )}
       </div>
     </div>
   );

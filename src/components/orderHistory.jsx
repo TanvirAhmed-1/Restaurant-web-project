@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import useAxios from "../Share/useAxios";
 import { AuthContext } from "./Authountation/Authorization";
+import { Helmet } from "react-helmet-async";
 
 const OrderHistory = () => {
   const [data, setData] = useState([]);
@@ -12,7 +13,6 @@ const OrderHistory = () => {
       try {
         if (users?.email) {
           const res = await axiosUrl.get(`/payments/${users.email}`);
-          console.log("Payments:", res.data);
           const allItems = res.data.flatMap(order => order.items);
           setData(allItems);
         }
@@ -24,39 +24,45 @@ const OrderHistory = () => {
     fetchData();
   }, [axiosUrl, users?.email]);
 
-  if (!users?.email) {
-    return <div>Loading...</div>;
-  }
+  const totalAmount = data.reduce((sum, item) => sum + item.total, 0);
 
   return (
-    <div className="bg-white p-4 text-black">
-      <div className="overflow-x-auto">
-        <table className="table text-black w-full">
-          <thead>
+    <div className="text-black p-4 w-full mx-auto">
+                  <Helmet>
+                    <title>Bistro Boss | Order History</title>
+                  </Helmet>
+      <h2 className="text-2xl font-bold text-center mb-4">Order History</h2>
+
+      <div className="bg-gray-100 rounded-md p-4 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-lg font-semibold">Total Orders: {data.length}</p>
+        <p className="text-lg font-semibold">Total Amount: ${totalAmount.toFixed(2)}</p>
+      </div>
+
+      <div className="overflow-x-auto bg-white rounded-md shadow-md">
+        <table className="table w-full text-black">
+          <thead className="bg-gray-200 text-black">
             <tr>
               <th>#</th>
               <th>Image</th>
-              <th>Name</th>
-              <th>Qty</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
               <th>Total</th>
             </tr>
           </thead>
           <tbody>
-            {data?.map((v, index) => (
+            {data.map((item, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle h-12 w-12">
-                        <img src={v.image} alt={v.name} />
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 rounded overflow-hidden">
+                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                   </div>
                 </td>
-                <td>{v.name}</td>
-                <td>{v.quantity}</td>
-                <td>${v.total.toFixed(2)}</td>
+                <td>{item.name}</td>
+                <td>{item.quantity}</td>
+                <td>${(item.total / item.quantity).toFixed(2)}</td>
+                <td>${item.total.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>

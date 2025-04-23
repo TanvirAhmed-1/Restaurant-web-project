@@ -5,6 +5,7 @@ import useDataHook from "../Share/useDataHook";
 import useAxios from "../Share/useAxios";
 import HomeHeader from "../Pages/Home/HomeHeader";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const UpdateProduct = () => {
   const { id } = useParams();
@@ -28,31 +29,35 @@ const UpdateProduct = () => {
       price: parseFloat(data.price),
       recipe: data.recipeDetails,
     };
-  
+
     try {
       const res = await axiosSecure.patch(`/menu/update/${id}`, updateData);
       console.log("Updated:", res.data);
-      if(res.data.acknowledged===true){
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "product Update Successfully",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+      if (res.data.acknowledged === true) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "product Update Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       }
     } catch (error) {
       console.error("Update failed:", error);
     }
   };
-  
 
   return (
-    <div>
+    <div className="w-full px-20">
+      <Helmet>
+        <title>Bistro Boss | Update Profile</title>
+      </Helmet>
       <HomeHeader pTitle="---Update Item---" header="UPDATE AN ITEM" />
-      <div className="bg-gray-200 w-8/12 mx-auto p-10 rounded-md mb-40">
+      <div className="bg-gray-200 w-full mx-auto p-10 rounded-md mb-40">
         {!product ? (
-          <p className="text-center font-semibold text-lg">Loading product...</p>
+          <p className="text-center font-semibold text-lg">
+            Loading product...
+          </p>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Recipe Name */}

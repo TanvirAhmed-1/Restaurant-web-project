@@ -3,6 +3,7 @@ import HomeHeader from "../Pages/Home/HomeHeader";
 import axios from "axios";
 import useAxios from "../Share/useAxios";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
@@ -55,10 +56,13 @@ const onSubmit = async (data) => {
   
 
   return (
-    <div>
+    <div className="w-full px-10">
+                    <Helmet>
+                      <title>Bistro Boss | Add Product</title>
+                    </Helmet>
       <HomeHeader pTitle="---What's new?---" header="ADD AN ITEM" />
 
-      <div className="bg-gray-200 w-8/12 mx-auto p-10 rounded-md mb-40">
+      <div className="bg-gray-200 w-full mx-auto p-10 rounded-md mb-40">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Recipe Name */}
           <div>

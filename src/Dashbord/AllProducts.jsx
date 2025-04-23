@@ -5,16 +5,16 @@ import useAxios from "../Share/useAxios";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const AllProducts = () => {
   const { menu } = useDataHook();
   const axiosUrl = useAxios();
   const [product, setProduct] = useState([]);
 
-
-  useEffect(()=>{
-    setProduct(menu)
-  },[menu])
+  useEffect(() => {
+    setProduct(menu);
+  }, [menu]);
   const handleDelete = (id) => {
     console.log(id);
 
@@ -38,7 +38,7 @@ const AllProducts = () => {
               icon: "success",
             });
             const updateData = product.filter((v) => v._id !== id);
-            setProduct(updateData)
+            setProduct(updateData);
           })
           .catch((err) => {
             console.log("error");
@@ -48,9 +48,21 @@ const AllProducts = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Bistro Boss | All Product</title>
+      </Helmet>
       <HomeHeader pTitle="---Hurry Up!---" header="MANAGE ALL ITEMS" />
 
       <div className="overflow-x-auto p-4">
+        <div className="md:flex justify-between items-center">
+          <h1 className="text-black text-xl font-semibold mb-2">
+            Total Product: {product?.length}
+          </h1>
+          <h1 className="text-black mb-2 ">
+            You went to delete product. Please add product or delete your
+            product.
+          </h1>
+        </div>
         <table className="min-w-full bg-white border border-gray-300 text-black">
           <thead className="bg-gray-100">
             <tr>
@@ -90,10 +102,11 @@ const AllProducts = () => {
                 </td>
 
                 <td className="py-2 px-4 border ">
-                  <Link to={`/Product/update/${item._id}`}
+                  <Link
+                    to={`/dashboard/Product/update/${item._id}`}
                     className="text-sky-400 hover:text-sky-600 flex justify-center"
                   >
-                    <FaPen/>
+                    <FaPen />
                   </Link>
                 </td>
               </tr>

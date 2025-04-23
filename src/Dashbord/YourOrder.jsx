@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../components/Authountation/Authorization";
 import useAxios from "../Share/useAxios";
+import { Helmet } from "react-helmet-async";
 
 const YourOrder = () => {
   const [data, refetch] = TanStackQuery();
@@ -115,8 +116,13 @@ const YourOrder = () => {
   if (data?.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center p-6 md:min-h-screen h-full">
+        <Helmet>
+          <title>Bistro Boss | Your Order</title>
+        </Helmet>
         <IoBagAddOutline className="text-6xl text-red-400" />
-        <h1 className="text-lg font-semibold text-black mb-2">You have No Order</h1>
+        <h1 className="text-lg font-semibold text-black mb-2">
+          You have No Order
+        </h1>
         <h1 className="text-sm text-gray-500">Please Add to Order</h1>
       </div>
     );
@@ -124,7 +130,9 @@ const YourOrder = () => {
 
   return (
     <div className="bg-white px-4 py-6">
-      <h1 className="text-2xl font-bold mb-4 text-center text-black">Your Order</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center text-black">
+        Your Order
+      </h1>
       <div className="flex flex-col md:flex-row justify-center items-start gap-6">
         {/* Order List */}
         <div className="w-full md:w-[70%] grid gap-4">
@@ -139,9 +147,7 @@ const YourOrder = () => {
                   />
                 </div>
                 <h1 className="text-sm md:col-span-2 text-black">{v.name}</h1>
-                <p className="text-sm text-black">
-                  Price: ${v.price}
-                </p>
+                <p className="text-sm text-black">Price: ${v.price}</p>
                 <div className="text-black grid grid-cols-3 items-center gap-0 border border-black rounded overflow-hidden w-28">
                   <button
                     onClick={() => increment(v._id)}

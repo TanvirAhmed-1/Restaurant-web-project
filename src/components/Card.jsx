@@ -2,12 +2,17 @@ import { useContext } from "react";
 import { AuthContext } from "./Authountation/Authorization";
 import TanStackQuery from "../Share/TanStackQuery";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ item }) => {
   const[,refetch]=TanStackQuery()
   const { users } = useContext(AuthContext);
+  const navigate=useNavigate()
   const { image, name, price, recipe } = item;
   const handleOrder = (d) => {
+    if(!users){
+      navigate("/login")
+    }
     console.log(d);
     const { _id, ...card } = d;
     fetch("http://localhost:5000/order", {
@@ -62,7 +67,7 @@ const Card = ({ item }) => {
           </div>
           <p className="text-start line-clamp-2 text-[#737373]">{recipe}</p>
           <div className="card-actions justify-center pt-6">
-            <button
+            <button 
               onClick={() => handleOrder(item)}
               className="btn border-t-0 border-l-0 border-r-0 bg-[#E8E8E8] hover:bg-black  border-solid text-[#BB8506] border-b-2  border-[#BB8506]"
             >

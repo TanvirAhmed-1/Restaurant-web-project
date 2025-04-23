@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Root from "../Pages/Root";
 import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home";
@@ -14,6 +14,9 @@ import OrderHistory from "../components/orderHistory";
 import AddProduct from "../Dashbord/AddProduct";
 import AllProducts from "../Dashbord/AllProducts";
 import UpdateProduct from "../Dashbord/UpdateProduct";
+import Admin from "../Dashbord/Admin";
+import PrivateRoute from "./PrivateRoute";
+
 
 const Router = createBrowserRouter([
   {
@@ -52,28 +55,33 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
-    element: <DashboardRoute></DashboardRoute>,
+    path: "/dashboard",
+    element: <PrivateRoute><DashboardRoute></DashboardRoute>,</PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
+  
     children: [
+      {
+        path: "/dashboard",
+        element: <Admin />
+      },
         { 
-        path: "/yourOrder", 
+        path: "/dashboard/yourOrder", 
         element: <YourOrder></YourOrder>
        },
        { 
-        path: "/orderHistory", 
+        path: "/dashboard/orderHistory", 
         element:<OrderHistory></OrderHistory>
        },
        { 
-        path: "/addProduct", 
+        path: "/dashboard/addProduct", 
         element:<AddProduct></AddProduct>
        },
        { 
-        path: "/allProduct", 
+        path: "/dashboard/allProduct", 
         element:<AllProducts></AllProducts>
        },
        {
-        path: "/Product/update/:id",
+        path: "/dashboard/Product/update/:id",
         element: <UpdateProduct />,
       }
     ],
