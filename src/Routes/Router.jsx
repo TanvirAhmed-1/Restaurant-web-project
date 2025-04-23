@@ -13,6 +13,7 @@ import Payment from "../components/Payment";
 import OrderHistory from "../components/orderHistory";
 import AddProduct from "../Dashbord/AddProduct";
 import AllProducts from "../Dashbord/AllProducts";
+import UpdateProduct from "../Dashbord/UpdateProduct";
 
 const Router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const Router = createBrowserRouter([
         path: "/allProduct", 
         element:<AllProducts></AllProducts>
        },
+       {
+        path: "/Product/update/:id",
+        element: <UpdateProduct />,
+      }
     ],
   },
 ]);
