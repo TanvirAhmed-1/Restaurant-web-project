@@ -15,9 +15,8 @@ const AllProducts = () => {
   useEffect(() => {
     setProduct(menu);
   }, [menu]);
-  const handleDelete = (id) => {
-    console.log(id);
 
+  const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,71 +27,65 @@ const AllProducts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosUrl
-          .delete(`/menu/delete/${id}`)
+        axiosUrl.delete(`/menu/delete/${id}`)
           .then((res) => {
-            console.log(res.data);
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
             const updateData = product.filter((v) => v._id !== id);
             setProduct(updateData);
           })
           .catch((err) => {
-            console.log("error");
+            console.log("Delete error:", err);
           });
       }
     });
   };
+
   return (
-    <div>
+    <div className="px-4 md:px-8 lg:px-16">
       <Helmet>
-        <title>Bistro Boss | All Product</title>
+        <title>Mamma Mia | All Product</title>
       </Helmet>
       <HomeHeader pTitle="---Hurry Up!---" header="MANAGE ALL ITEMS" />
 
-      <div className="overflow-x-auto p-4">
-        <div className="md:flex justify-between items-center">
-          <h1 className="text-black text-xl font-semibold mb-2">
-            Total Product: {product?.length}
+      <div className="overflow-x-auto mt-6">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+          <h1 className="text-black text-lg md:text-2xl font-semibold mb-2 md:mb-0">
+            Total Products: {product?.length}
           </h1>
-          <h1 className="text-black mb-2 ">
-            You went to delete product. Please add product or delete your
-            product.
-          </h1>
+          <p className="text-gray-600 text-sm md:text-base text-center md:text-left">
+            You can add or delete your products from here.
+          </p>
         </div>
-        <table className="min-w-full bg-white border border-gray-300 text-black">
+
+        <table className="min-w-full bg-white border border-gray-300 text-black text-sm md:text-base">
           <thead className="bg-gray-100">
             <tr>
-              <th className="py-2 px-4 border">#</th>
-              <th className="py-2 px-4 border">Image</th>
-              <th className="py-2 px-4 border">Name</th>
-              <th className="py-2 px-4 border">Category</th>
-              <th className="py-2 px-4 border">Price</th>
-              <th className="py-2 px-4 border">Recipe</th>
-              <th className="py-2 px-4 border">Delete</th>
-              <th className="py-2 px-4 border">Updata</th>
+              <th className="py-2 px-2 md:px-4 border">#</th>
+              <th className="py-2 px-2 md:px-4 border">Image</th>
+              <th className="py-2 px-2 md:px-4 border">Name</th>
+              <th className="py-2 px-2 md:px-4 border">Category</th>
+              <th className="py-2 px-2 md:px-4 border">Price</th>
+              {/* <th className="py-2 px-2 md:px-4 border">Recipe</th> */}
+              <th className="py-2 px-2 md:px-4 border">Delete</th>
+              <th className="py-2 px-2 md:px-4 border">Update</th>
             </tr>
           </thead>
           <tbody>
             {product?.map((item, index) => (
-              <tr key={index} className="text-center text-black">
-                <td className="py-2 px-4 border">{index + 1}</td>
-                <td className="py-2 px-4 border">
+              <tr key={index} className="text-center">
+                <td className="py-2 px-2 md:px-4 border">{index + 1}</td>
+                <td className="py-2 px-2 md:px-4 border">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-16 h-16 object-cover mx-auto rounded"
+                    className="w-12 h-12 md:w-16 md:h-16 object-cover mx-auto rounded"
                   />
                 </td>
-                <td className="py-2 px-4 w-auto border">{item.name}</td>
-                <td className="py-2 px-4 border">{item.category}</td>
-                <td className="py-2 px-4 border">${item.price}</td>
-                <td className="py-2 px-4 border">{item.recipe}</td>
-
-                <td className="py-2 px-4 border">
+                <td className="py-2 px-2 md:px-4 border">{item.name}</td>
+                <td className="py-2 px-2 md:px-4 border">{item.category}</td>
+                <td className="py-2 px-2 md:px-4 border">${item.price}</td>
+                {/* <td className="py-2 px-2 md:px-4 border">{item.recipe}</td> */}
+                <td className="py-2 px-2 md:px-4 border">
                   <button
                     onClick={() => handleDelete(item._id)}
                     className="text-red-600 hover:text-red-800"
@@ -100,8 +93,7 @@ const AllProducts = () => {
                     <FaTrash />
                   </button>
                 </td>
-
-                <td className="py-2 px-4 border ">
+                <td className="py-2 px-2 md:px-4 border">
                   <Link
                     to={`/dashboard/Product/update/${item._id}`}
                     className="text-sky-400 hover:text-sky-600 flex justify-center"

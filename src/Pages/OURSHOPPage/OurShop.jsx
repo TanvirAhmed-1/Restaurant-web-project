@@ -43,7 +43,7 @@ const OurShop = () => {
   return (
     <div>
       <Helmet>
-        <title>Bistro Boss | Order</title>
+        <title>Mamma Mia | Order</title>
       </Helmet>
       <HeaderImg
         img={shopImg}

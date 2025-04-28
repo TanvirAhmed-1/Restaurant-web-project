@@ -4,7 +4,7 @@ const MenuPage = () => {
   return (
     <div className="bg-white">
             <Helmet>
-              <title>Bistro Boss | Menu</title>
+              <title>Mamma Mia | Menu</title>
             </Helmet>
       <div className="MenuPage-img min-h-[800px] w-full flex justify-center items-center">
         <div className="bg-black bg-opacity-40 md:py-40 lg:px-72 md:px-40 px-20 py-20 z-10 space-y-4">

@@ -52,7 +52,12 @@ const Router = createBrowserRouter([
         path: "/payment",
         element:<Payment></Payment>,
       },
-    ],
+      { 
+        path: "/yourOrder", 
+        element: <YourOrder></YourOrder>
+       },
+  
+    ]
   },
   {
     path: "/dashboard",
@@ -64,10 +69,6 @@ const Router = createBrowserRouter([
         path: "/dashboard",
         element: <Admin />
       },
-        { 
-        path: "/dashboard/yourOrder", 
-        element: <YourOrder></YourOrder>
-       },
        { 
         path: "/dashboard/orderHistory", 
         element:<OrderHistory></OrderHistory>

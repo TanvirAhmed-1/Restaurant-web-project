@@ -7,59 +7,58 @@ import { Helmet } from "react-helmet-async";
 
 const AddProduct = () => {
   const { register, handleSubmit } = useForm();
-  const axiosBas=useAxios()
-  
-const URL=import.meta.env.VITE_IMAGE_URL
+  const axiosBas = useAxios();
 
-const onSubmit = async (data) => {
+  const URL = import.meta.env.VITE_IMAGE_URL;
+
+  const onSubmit = async (data) => {
     const fileImage = data.image[0];
-  
+
     // Prepare FormData
     const formData = new FormData();
     formData.append("image", fileImage);
-  
+
     try {
       const res = await axios.post(URL, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-  
+
       const imageUrl = res.data?.data?.display_url;
       console.log("Image uploaded:", imageUrl);
-  
+
       // product data
       const sendData = {
         name: data.recipeName,
         recipe: data.recipeDetails,
-        image: imageUrl, 
+        image: imageUrl,
         category: data.category,
         price: parseFloat(data.price),
       };
-  
+
       console.log(" Final Data to Send:", sendData);
-  
+
       // Send to backend
-      const res2= await axiosBas.post('/menu', sendData);
-      console.log(res2)
-      if(res2.data.acknowledged===true){
-           Swal.fire({
-             position: "top-end",
-             icon: "success",
-             title: "Product is Upload successfully",
-             showConfirmButton: false,
-             timer: 1500,
-           });
-      }     
+      const res2 = await axiosBas.post("/menu", sendData);
+      console.log(res2);
+      if (res2.data.acknowledged === true) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Product is Upload successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } catch (err) {
       console.error(err);
     }
   };
-  
 
   return (
     <div className="w-full px-10">
-                    <Helmet>
-                      <title>Bistro Boss | Add Product</title>
-                    </Helmet>
+      <Helmet>
+        <title>Mamma Mia | Add Product</title>
+      </Helmet>
       <HomeHeader pTitle="---What's new?---" header="ADD AN ITEM" />
 
       <div className="bg-gray-200 w-full mx-auto p-10 rounded-md mb-40">

@@ -116,9 +116,6 @@ const YourOrder = () => {
   if (data?.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center p-6 md:min-h-screen h-full">
-        <Helmet>
-          <title>Bistro Boss | Your Order</title>
-        </Helmet>
         <IoBagAddOutline className="text-6xl text-red-400" />
         <h1 className="text-lg font-semibold text-black mb-2">
           You have No Order
@@ -130,6 +127,9 @@ const YourOrder = () => {
 
   return (
     <div className="bg-white px-4 py-6">
+      <Helmet>
+        <title>Mamma Mia | Your Order</title>
+      </Helmet>
       <h1 className="text-2xl font-bold mb-4 text-center text-black">
         Your Order
       </h1>
@@ -137,17 +137,17 @@ const YourOrder = () => {
         {/* Order List */}
         <div className="w-full md:w-[70%] grid gap-4">
           {data?.map((v) => (
-            <div key={v._id} className="border rounded-lg p-2">
+            <div key={v?._id} className="border rounded-lg p-2">
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 items-center gap-4">
                 <div className="border p-2 w-full md:w-28 mx-auto">
                   <img
-                    src={v.image}
-                    alt={v.name}
+                    src={v?.image}
+                    alt={v?.name}
                     className="w-full h-auto object-cover"
                   />
                 </div>
-                <h1 className="text-sm md:col-span-2 text-black">{v.name}</h1>
-                <p className="text-sm text-black">Price: ${v.price}</p>
+                <h1 className="text-sm md:col-span-2 text-black">{v?.name}</h1>
+                <p className="text-sm text-black">Price: ${v?.price}</p>
                 <div className="text-black grid grid-cols-3 items-center gap-0 border border-black rounded overflow-hidden w-28">
                   <button
                     onClick={() => increment(v._id)}

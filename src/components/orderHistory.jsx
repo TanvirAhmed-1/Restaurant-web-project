@@ -29,7 +29,7 @@ const OrderHistory = () => {
   return (
     <div className="text-black p-4 w-full mx-auto">
                   <Helmet>
-                    <title>Bistro Boss | Order History</title>
+                    <title>Mamma Mia | Order History</title>
                   </Helmet>
       <h2 className="text-2xl font-bold text-center mb-4">Order History</h2>
 

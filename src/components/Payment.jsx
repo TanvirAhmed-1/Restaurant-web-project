@@ -54,7 +54,7 @@ const Payment = () => {
   return (
     <div className="w-11/12 md:w-10/12 mx-auto py-6 pt-40">
       <Helmet>
-        <title>Bistro Boss |Payment</title>
+        <title>Mamma Mia |Payment</title>
       </Helmet>
       <h1 className="text-2xl text-black text-center uppercase mb-6">
         Choose your Payment Option

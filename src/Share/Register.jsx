@@ -61,7 +61,7 @@ const Register = () => {
   return (
     <div className="min-h-screen login-img lg:p-28 md:pb-20 p-10 pt-40 md:pt-0">
       <Helmet>
-        <title>Bistro Boss | Register</title>
+        <title>Mamma Mia | Register</title>
       </Helmet>
       <div className="login-img md:p-20 drop-shadow-lg shadow-black lg:flex gap-10 lg:flex-row-reverse justify-center items-center">
         <div className="lg:w-[50%]">

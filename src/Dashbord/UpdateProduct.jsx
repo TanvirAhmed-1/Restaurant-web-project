@@ -50,7 +50,7 @@ const UpdateProduct = () => {
   return (
     <div className="w-full px-20">
       <Helmet>
-        <title>Bistro Boss | Update Profile</title>
+        <title>Mamma Mia | Update Profile</title>
       </Helmet>
       <HomeHeader pTitle="---Update Item---" header="UPDATE AN ITEM" />
       <div className="bg-gray-200 w-full mx-auto p-10 rounded-md mb-40">
