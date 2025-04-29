@@ -60,7 +60,7 @@ const YourOrder = () => {
   const handleCheckout = () => {
     localStorage.setItem("orderData", JSON.stringify(orderData));
 
-    fetch("http://localhost:5000/payments", {
+    fetch("https://restaurent-server-ashen.vercel.app/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

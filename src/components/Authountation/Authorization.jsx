@@ -66,6 +66,7 @@ const Authorization = ({ children }) => {
     gmailUser,
     userSignOut,
     userProfileUpdate,
+    setUsers,
   };
 
   return (

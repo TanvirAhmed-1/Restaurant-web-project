@@ -3,7 +3,7 @@ import img1 from "../assets/others/authentication2.png";
 import GmailLogin from "./GmailLogin";
 import { AuthContext } from "../components/Authountation/Authorization";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const Register = () => {
@@ -11,6 +11,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState("");
   const navigate = useNavigate();
+  const location=useLocation()
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
@@ -47,11 +48,11 @@ const Register = () => {
         })
           .then((res) => {
             setUsers(res.user);
-            navigate("/");
+            navigate(location?.state || "/");
             console.log("Profile updated", res.user);
           })
           .catch((err) => {
-            console.log(err.message);
+            // console.log(err.message);
             alert("Register fail Change email");
           });
       })

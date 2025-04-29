@@ -15,7 +15,7 @@ const Card = ({ item }) => {
     }
     console.log(d);
     const { _id, ...card } = d;
-    fetch("http://localhost:5000/order", {
+    fetch("https://restaurent-server-ashen.vercel.app/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -40,6 +40,7 @@ const Login = () => {
       .then((res) => {
         console.log("Logged in user:", res.user);
         navigate(location?.state ? location.state : "/")
+
       })
       .catch((err) => {
         console.log("Login error:", err.message);

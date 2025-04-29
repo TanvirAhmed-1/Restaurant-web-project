@@ -16,7 +16,7 @@ const OurShop = () => {
 
   // Fetch menu data on component mount
   useEffect(() => {
-    fetch(`http://localhost:5000/menu?sort=${sort}`)
+    fetch(`https://restaurent-server-ashen.vercel.app/menu?sort=${sort}`)
       .then((res) => res.json())
       .then((data) => {
         setMenu(data);
